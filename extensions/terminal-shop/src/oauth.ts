@@ -15,4 +15,5 @@ export const terminal = new OAuthService({
   tokenUrl: "https://auth.terminal.shop/token",
   refreshTokenUrl: "https://auth.terminal.shop/token",
   scope: "",
+  bodyEncoding: "url-encoded",
 });
