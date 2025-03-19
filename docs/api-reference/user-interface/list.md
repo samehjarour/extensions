@@ -458,7 +458,22 @@ export default function Command() {
 
 #### Props
 
-<PropsTableFromJSDoc component="List" />
+| Prop | Description | Type | Default |
+| :--- | :--- | :--- | :--- |
+| actions | A reference to an [ActionPanel](action-panel.md#actionpanel). It will only be shown when there aren't any children. | <code>React.ReactNode</code> | - |
+| children | List sections or items. If [List.Item](list.md#list.item) elements are specified, a default section is automatically created. | <code>React.ReactNode</code> | - |
+| filtering | Toggles Raycast filtering. When `true`, Raycast will use the query in the search bar to filter the items. When `false`, the extension needs to take care of the filtering. | <code>boolean</code> or <code>{ keepSectionOrder: boolean }</code> | `false` when `onSearchTextChange` is specified, `true` otherwise. |
+| isLoading | Indicates whether a loading bar should be shown or hidden below the search bar | <code>boolean</code> | `false` |
+| isShowingDetail | Whether the List should have an area on the right side of the items to show additional details about the selected item. | <code>boolean</code> | - |
+| navigationTitle | The main title for that view displayed in Raycast | <code>string</code> | Command title |
+| pagination | Configuration for pagination | <code>{ hasMore: boolean; pageSize: number; onLoadMore: () => void }</code> | - |
+| searchBarAccessory | [List.Dropdown](list.md#list.dropdown) that will be shown in the right-hand-side of the search bar. | <code>ReactElement&lt;[List.Dropdown.Props](list.md#props), string></code> | - |
+| searchBarPlaceholder | Placeholder text that will be shown in the search bar. | <code>string</code> | `"Search…"` |
+| searchText | The text that will be displayed in the search bar. | <code>string</code> | - |
+| selectedItemId | Selects the item with the specified id. | <code>string</code> | - |
+| throttle | Defines whether the `onSearchTextChange` handler will be triggered on every keyboard press or with a delay for throttling the events. Recommended to set to `true` when using custom filtering logic with asynchronous operations (e.g. network requests). | <code>boolean</code> | `false` |
+| onSearchTextChange | Callback triggered when the search bar text changes. | <code>(text: string) => void</code> | - |
+| onSelectionChange | Callback triggered when the item selection in the list changes. | <code>(id: string) => void</code> | - |
 
 ### List.Dropdown
 
@@ -515,7 +530,20 @@ export default function Command() {
 
 #### Props
 
-<PropsTableFromJSDoc component="List.Dropdown" />
+| Prop | Description | Type | Default |
+| :--- | :--- | :--- | :--- |
+| tooltip<mark style="color:red;">*</mark> | Tooltip displayed when hovering the dropdown. | <code>string</code> | - |
+| children | Dropdown sections or items. If Dropdown.Item elements are specified, a default section is automatically created. | <code>React.ReactNode</code> | - |
+| defaultValue | The default value of the dropdown. Keep in mind that `defaultValue` will be configured once per component lifecycle. This means that if a user changes the value, `defaultValue` won't be configured on re-rendering. | <code>string</code> | - |
+| filtering | Toggles Raycast filtering. When `true`, Raycast will use the query in the search bar to filter the items. When `false`, the extension needs to take care of the filtering. | <code>boolean</code> or <code>{ keepSectionOrder: boolean }</code> | `false` when `onSearchTextChange` is specified, `true` otherwise. |
+| id | ID of the dropdown. | <code>string</code> | - |
+| isLoading | Indicates whether a loading indicator should be shown or hidden next to the search bar | <code>boolean</code> | `false` |
+| placeholder | Placeholder text that will be shown in the dropdown search field. | <code>string</code> | `"Search…"` |
+| storeValue | Indicates whether the value of the dropdown should be persisted after selection, and restored next time the dropdown is rendered. | <code>boolean</code> | - |
+| throttle | Defines whether the `onSearchTextChange` handler will be triggered on every keyboard press or with a delay for throttling the events. Recommended to set to `true` when using custom filtering logic with asynchronous operations (e.g. network requests). | <code>boolean</code> | `false` |
+| value | The currently value of the dropdown. | <code>string</code> | - |
+| onChange | Callback triggered when the dropdown selection changes. | <code>(newValue: string) => void</code> | - |
+| onSearchTextChange | Callback triggered when the search bar text changes. | <code>(text: string) => void</code> | - |
 
 ### List.Dropdown.Item
 
@@ -545,7 +573,12 @@ export default function Command() {
 
 #### Props
 
-<PropsTableFromJSDoc component="List.Dropdown.Item" />
+| Prop | Description | Type | Default |
+| :--- | :--- | :--- | :--- |
+| title<mark style="color:red;">*</mark> | The title displayed for the item. | <code>string</code> | - |
+| value<mark style="color:red;">*</mark> | Value of the dropdown item. Make sure to assign each unique value for each item. | <code>string</code> | - |
+| icon | An optional icon displayed for the item. | <code>[Image.ImageLike](icons-and-images.md#image.imagelike)</code> | - |
+| keywords | An optional property used for providing additional indexable strings for search. When filtering the items in Raycast, the keywords will be searched in addition to the title. | <code>string[]</code> | The title of its section if any |
 
 ### List.Dropdown.Section
 
@@ -580,7 +613,10 @@ export default function Command() {
 
 #### Props
 
-<PropsTableFromJSDoc component="List.Dropdown.Section" />
+| Prop | Description | Type | Default |
+| :--- | :--- | :--- | :--- |
+| children | The item elements of the section. | <code>React.ReactNode</code> | - |
+| title | Title displayed above the section | <code>string</code> | - |
 
 ### List.EmptyView
 
@@ -622,7 +658,12 @@ export default function CommandWithCustomEmptyView() {
 
 #### Props
 
-<PropsTableFromJSDoc component="List.EmptyView" />
+| Prop | Description | Type | Default |
+| :--- | :--- | :--- | :--- |
+| actions | A reference to an [ActionPanel](action-panel.md#actionpanel). | <code>React.ReactNode</code> | - |
+| description | An optional description for why the empty view is shown. | <code>string</code> | - |
+| icon | An icon displayed in the center of the EmptyView. | <code>[Image.ImageLike](icons-and-images.md#image.imagelike)</code> | - |
+| title | The main title displayed for the Empty View. | <code>string</code> | - |
 
 ### List.Item
 
@@ -648,7 +689,17 @@ export default function Command() {
 
 #### Props
 
-<PropsTableFromJSDoc component="List.Item" />
+| Prop | Description | Type | Default |
+| :--- | :--- | :--- | :--- |
+| title<mark style="color:red;">*</mark> | The main title displayed for that item, optionally with a tooltip. | <code>string</code> or <code>{ tooltip?: string; value: string }</code> | - |
+| accessories | An optional array of [List.Item.Accessory](list.md#list.item.accessory) items displayed on the right side in a List.Item. | <code>[List.Item.Accessory](list.md#list.item.accessory)[]</code> | - |
+| actions | An [ActionPanel](action-panel.md#actionpanel) that will be updated for the selected list item. | <code>React.ReactNode</code> | - |
+| detail | The `List.Item.Detail` to be rendered in the right side area when the parent List is showing details and the item is selected. | <code>React.ReactNode</code> | - |
+| icon | An optional icon displayed for the list item. | <code>[Image.ImageLike](icons-and-images.md#image.imagelike)</code> or <code>{ tooltip: string; value: [Image.ImageLike](icons-and-images.md#image.imagelike) }</code> | - |
+| id | ID of the item. This string is passed to the `onSelectionChange` handler of the [List](list.md#list) when the item is selected. Make sure to assign each item a unique ID or a UUID will be auto generated. | <code>string</code> | - |
+| keywords | An optional property used for providing additional indexable strings for search. When filtering the list in Raycast through the search bar, the keywords will be searched in addition to the title. | <code>string[]</code> | - |
+| quickLook | Optional information to preview files with Quick Look. Toggle the preview with [Action.ToggleQuickLook](actions.md#action.togglequicklook). | <code>{ name?: string; path: string }</code> | - |
+| subtitle | An optional subtitle displayed next to the main title, optionally with a tooltip. | <code>string</code> or <code>{ tooltip?: string; value?: string }</code> | - |
 
 ### List.Item.Detail
 
@@ -680,7 +731,11 @@ export default function Command() {
 
 #### Props
 
-<PropsTableFromJSDoc component="List.Item.Detail" />
+| Prop | Description | Type | Default |
+| :--- | :--- | :--- | :--- |
+| isLoading | Indicates whether a loading bar should be shown or hidden above the detail | <code>boolean</code> | `false` |
+| markdown | The CommonMark string to be rendered in the right side area when the parent List is showing details and the item is selected. | <code>string</code> | - |
+| metadata | The `List.Item.Detail.Metadata` to be rendered in the bottom side of the `List.Item.Detail` | <code>React.ReactNode</code> | - |
 
 ### List.Item.Detail.Metadata
 
@@ -787,7 +842,9 @@ export default function Metadata() {
 
 #### Props
 
-<PropsTableFromJSDoc component="List.Item.Detail.Metadata" />
+| Prop | Description | Type | Default |
+| :--- | :--- | :--- | :--- |
+| children<mark style="color:red;">*</mark> | The elements of the Metadata view. | <code>React.ReactNode</code> | - |
 
 ### List.Item.Detail.Metadata.Label
 
@@ -822,7 +879,11 @@ export default function Metadata() {
 
 #### Props
 
-<PropsTableFromJSDoc component="List.Item.Detail.Metadata.Label" />
+| Prop | Description | Type | Default |
+| :--- | :--- | :--- | :--- |
+| title<mark style="color:red;">*</mark> | The title of the item. | <code>string</code> | - |
+| icon | An icon to illustrate the value of the item. | <code>[Image.ImageLike](icons-and-images.md#image.imagelike)</code> | - |
+| text | The text value of the item. Specifying `color` will display the text in the provided color. Defaults to [Color.PrimaryText](colors.md#color). | <code>string</code> or <code>{ color?: [Color](colors.md#color); value: string }</code> | - |
 
 ### List.Item.Detail.Metadata.Link
 
@@ -861,7 +922,11 @@ export default function Metadata() {
 
 #### Props
 
-<PropsTableFromJSDoc component="List.Item.Detail.Metadata.Link" />
+| Prop | Description | Type | Default |
+| :--- | :--- | :--- | :--- |
+| target<mark style="color:red;">*</mark> | The target of the link. | <code>string</code> | - |
+| text<mark style="color:red;">*</mark> | The text value of the item. | <code>string</code> | - |
+| title<mark style="color:red;">*</mark> | The title shown above the item. | <code>string</code> | - |
 
 ### List.Item.Detail.Metadata.TagList
 
@@ -898,7 +963,10 @@ export default function Metadata() {
 
 #### Props
 
-<PropsTableFromJSDoc component="List.Item.Detail.Metadata.TagList" />
+| Prop | Description | Type | Default |
+| :--- | :--- | :--- | :--- |
+| children<mark style="color:red;">*</mark> | The tags contained in the TagList. | <code>React.ReactNode</code> | - |
+| title<mark style="color:red;">*</mark> | The title shown above the item. | <code>string</code> | - |
 
 ### List.Item.Detail.Metadata.TagList.Item
 
@@ -906,7 +974,12 @@ A Tag in a `List.Item.Detail.Metadata.TagList`.
 
 #### Props
 
-<PropsTableFromJSDoc component="List.Item.Detail.Metadata.TagList.Item" />
+| Prop | Description | Type | Default |
+| :--- | :--- | :--- | :--- |
+| color | Changes the text color to the provided color and sets a transparent background with the same color. | <code>[Color.ColorLike](colors.md#color.colorlike)</code> | - |
+| icon | The optional icon tag icon. Required if the tag has no text. | <code>[Image.ImageLike](icons-and-images.md#image.imagelike)</code> | - |
+| text | The optional tag text. Required if the tag has no icon. | <code>string</code> | - |
+| onAction | Callback that is triggered when the item is clicked. | <code>() => void</code> | - |
 
 ### List.Item.Detail.Metadata.Separator
 
@@ -969,7 +1042,11 @@ export default function Command() {
 
 #### Props
 
-<PropsTableFromJSDoc component="List.Section" />
+| Prop | Description | Type | Default |
+| :--- | :--- | :--- | :--- |
+| children | The [List.Item](list.md#list.item) elements of the section. | <code>React.ReactNode</code> | - |
+| subtitle | An optional subtitle displayed next to the title of the section. | <code>string</code> | - |
+| title | Title displayed above the section. | <code>string</code> | - |
 
 ## Types
 
@@ -981,7 +1058,13 @@ An interface describing an accessory view in a `List.Item`.
 
 #### Properties
 
-<InterfaceTableFromJSDoc name="List.Item.Accessory" />
+| Property | Description | Type |
+| :--- | :--- | :--- |
+| tag<mark style="color:red;">*</mark> | A string or Date that will be used as the label, optionally colored. The date is formatted relatively to the current time (for example `new Date()` will be displayed as `"now"`, yesterday's Date will be displayed as "1d", etc.). Color changes the text color to the provided color and sets a transparent background with the same color. Defaults to [Color.SecondaryText](colors.md#color). | <code>string</code> or <code>Date</code> or <code>undefined</code> or <code>null</code> or <code>{ color?: [Color.ColorLike](colors.md#color.colorlike); value: string</code> or <code>Date</code> or <code>undefined</code> or <code>null }</code> |
+| text | An optional text that will be used as the label, optionally colored. Color changes the text color to the provided color. Defaults to [Color.SecondaryText](colors.md#color). | <code>string</code> or <code>null</code> or <code>{ color?: [Color](colors.md#color); value: string</code> or <code>undefined</code> or <code>null }</code> |
+| date | An optional Date that will be used as the label, optionally colored. The date is formatted relatively to the current time (for example `new Date()` will be displayed as `"now"`, yesterday's Date will be displayed as "1d", etc.). Color changes the text color to the provided color. Defaults to [Color.SecondaryText](colors.md#color). | <code>Date</code> or <code>null</code> or <code>{ color?: [Color](colors.md#color); value: Date</code> or <code>undefined</code> or <code>null }</code> |
+| icon | An optional [Image.ImageLike](icons-and-images.md#image.imagelike) that will be used as the icon. | <code>[Image.ImageLike](icons-and-images.md#image.imagelike)</code> or <code>null</code> |
+| tooltip | An optional tooltip shown when the accessory is hovered. | <code>string</code> or <code>null</code> |
 
 #### Example
 
